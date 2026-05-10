@@ -1,0 +1,185 @@
+---
+const services = [
+  {
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>`,
+    color: 'primary',
+    tag: 'Ingest',
+    title: 'Multi-Format Ingest',
+    description:
+      'Accepts documentation in any format — Markdown, OpenAPI, man pages, HTML, PDF, Confluence exports, and more. All content is normalized into a shared internal schema, decoupling your sources from your processing pipeline.',
+    features: ['Markdown & MDX', 'OpenAPI / Swagger', 'Man pages & CLI help', 'PDF & HTML', 'Confluence & Notion'],
+  },
+  {
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>`,
+    color: 'secondary',
+    tag: 'Process',
+    title: 'LLM-Powered Processing',
+    description:
+      'Large language models analyze the standardized knowledge to extract semantics, identify topics, summarize sections, and prepare rich metadata for downstream services.',
+    features: ['Semantic extraction', 'Topic modelling', 'Automatic summarisation', 'Entity recognition', 'Cross-component analysis'],
+  },
+  {
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="6" cy="12" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><line x1="9" y1="12" x2="15" y2="7"/><line x1="9" y1="12" x2="15" y2="17"/></svg>`,
+    color: 'accent',
+    tag: 'Link',
+    title: 'Relation Linking',
+    description:
+      'Discovers semantic connections between documentation topics across teams and components. Related concepts are linked into a navigable knowledge graph, making cross-team knowledge discoverable.',
+    features: ['Semantic similarity search', 'Cross-component linking', 'Knowledge graph export', 'Dependency mapping', 'Topic clustering'],
+  },
+  {
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`,
+    color: 'warn',
+    tag: 'Detect',
+    title: 'Contradiction Detection',
+    description:
+      'Compares statements across all ingested documentation to surface conflicting information. Every detected contradiction is documented in a structured report with source references.',
+    features: ['Cross-document comparison', 'Conflict scoring', 'Structured reports', 'Source attribution', 'Change-based re-analysis'],
+  },
+  {
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`,
+    color: 'accent',
+    tag: 'Output',
+    title: 'Flexible Output Formats',
+    description:
+      'Export processed knowledge into the format your downstream systems need. Generators transform the standardized data into multiple output schemas simultaneously.',
+    features: ['Markdown & MDX', 'JSON / JSON-LD', 'HTML static site', 'OpenAPI annotations', 'Custom templates'],
+  },
+  {
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>`,
+    color: 'success',
+    tag: 'Validate',
+    title: 'Doc–Reality Validation',
+    description:
+      'The validation service reads CLI and API documentation, executes the described commands and API calls against the real software, and reports every discrepancy between documented and actual behavior.',
+    features: ['CLI command execution', 'API endpoint testing', 'Discrepancy reports', 'Regression tracking', 'CI/CD integration'],
+  },
+];
+---
+
+<section class="section" id="services">
+  <div class="container">
+    <div class="section-header">
+      <span class="tag">Services</span>
+      <h2>Everything your docs need. <span class="gradient-text">All in one platform.</span></h2>
+      <p>
+        Six purpose-built services work together across the tecweave pipeline —
+        independently deployable, composable, and extensible.
+      </p>
+    </div>
+
+    <div class="services-grid">
+      {services.map((service) => (
+        <article class={`service-card color-${service.color}`}>
+          <div class={`service-icon color-${service.color}`} set:html={service.icon} />
+          <div class="service-tag">{service.tag}</div>
+          <h3>{service.title}</h3>
+          <p>{service.description}</p>
+          <ul class="feature-list">
+            {service.features.map((f) => (
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                {f}
+              </li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .service-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card);
+  }
+
+  .service-card.color-primary:hover { border-color: rgba(0, 194, 255, 0.35); }
+  .service-card.color-secondary:hover { border-color: rgba(123, 94, 167, 0.35); }
+  .service-card.color-accent:hover { border-color: rgba(0, 255, 200, 0.25); }
+  .service-card.color-warn:hover { border-color: rgba(251, 191, 36, 0.35); }
+  .service-card.color-success:hover { border-color: rgba(52, 211, 153, 0.35); }
+
+  .service-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .service-icon.color-primary { background: rgba(0, 194, 255, 0.12); color: var(--color-primary); }
+  .service-icon.color-secondary { background: rgba(123, 94, 167, 0.15); color: var(--color-secondary); }
+  .service-icon.color-accent { background: rgba(0, 255, 200, 0.1); color: var(--color-accent); }
+  .service-icon.color-warn { background: rgba(251, 191, 36, 0.12); color: #fbbf24; }
+  .service-icon.color-success { background: rgba(52, 211, 153, 0.1); color: #34d399; }
+
+  .service-tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .service-card h3 {
+    font-size: 1.15rem;
+    margin: 0;
+  }
+
+  .service-card p {
+    font-size: 0.9rem;
+    flex: 1;
+  }
+
+  .feature-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .feature-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    color: var(--color-text-muted);
+  }
+
+  .feature-list svg {
+    color: var(--color-accent);
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 640px) {
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
