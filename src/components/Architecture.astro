@@ -1,0 +1,267 @@
+---
+---
+<section class="section section-alt" id="architecture">
+  <div class="container">
+    <div class="section-header">
+      <span class="tag">Platform Architecture</span>
+      <h2>Modular by design. <span class="gradient-text">Connected by purpose.</span></h2>
+      <p>
+        tecweave is built around a composable pipeline of independent services.
+        Each service handles one concern perfectly — and they compose into a
+        unified knowledge platform.
+      </p>
+    </div>
+
+    <!-- Pipeline diagram -->
+    <div class="pipeline">
+      <!-- Layer 1: Ingest -->
+      <div class="pipeline-layer">
+        <div class="layer-label">Sources</div>
+        <div class="source-chips">
+          <span class="chip">Markdown</span>
+          <span class="chip">OpenAPI / Swagger</span>
+          <span class="chip">Man pages</span>
+          <span class="chip">Confluence</span>
+          <span class="chip">README</span>
+          <span class="chip">PDF</span>
+          <span class="chip">HTML</span>
+        </div>
+        <div class="layer-arrow" aria-hidden="true">↓</div>
+      </div>
+
+      <!-- Layer 2: Standardise -->
+      <div class="pipeline-layer highlight-layer">
+        <div class="layer-label">Ingest Service</div>
+        <div class="layer-box ingest-box">
+          <div class="layer-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M4 4h16v4H4z"/><path d="M4 10h16v4H4z"/><path d="M4 16h16v4H4z"/>
+            </svg>
+          </div>
+          <div>
+            <h3>Standardised Format</h3>
+            <p>All source formats are normalized into a common internal schema, decoupling downstream processing from source specifics.</p>
+          </div>
+        </div>
+        <div class="layer-arrow" aria-hidden="true">↓</div>
+      </div>
+
+      <!-- Layer 3: Processing (3 columns) -->
+      <div class="pipeline-layer">
+        <div class="layer-label">LLM Processing Services</div>
+        <div class="processing-grid">
+          <div class="proc-card">
+            <div class="proc-icon relation">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="6" cy="12" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="18" cy="18" r="3"/>
+                <line x1="9" y1="12" x2="15" y2="7"/><line x1="9" y1="12" x2="15" y2="17"/>
+              </svg>
+            </div>
+            <h4>Relation Finder</h4>
+            <p>Discovers semantic connections between topics across components. Creates a linked knowledge graph.</p>
+          </div>
+          <div class="proc-card">
+            <div class="proc-icon contradiction">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                <line x1="12" y1="9" x2="12" y2="13"/>
+                <line x1="12" y1="17" x2="12.01" y2="17"/>
+              </svg>
+            </div>
+            <h4>Contradiction Detector</h4>
+            <p>Surfaces conflicting information across your component docs and generates a contradiction report.</p>
+          </div>
+          <div class="proc-card">
+            <div class="proc-icon format">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+              </svg>
+            </div>
+            <h4>Output Formatter</h4>
+            <p>Converts the processed knowledge into multiple output formats for downstream consumers.</p>
+          </div>
+        </div>
+        <div class="layer-arrow" aria-hidden="true">↓</div>
+      </div>
+
+      <!-- Layer 4: Validation -->
+      <div class="pipeline-layer highlight-layer">
+        <div class="layer-label">Validation Service</div>
+        <div class="layer-box validate-box">
+          <div class="layer-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polyline points="9 11 12 14 22 4"/>
+              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+            </svg>
+          </div>
+          <div>
+            <h3>CLI/API Doc Validation</h3>
+            <p>Actively calls the software described in your documentation and cross-checks actual behavior against documented behavior — flagging every discrepancy.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pipeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    align-items: center;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .pipeline-layer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .layer-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin-bottom: 0.75rem;
+    align-self: flex-start;
+  }
+
+  .layer-arrow {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    opacity: 0.4;
+    margin: 0.75rem 0;
+  }
+
+  /* Source chips */
+  .source-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .chip {
+    display: inline-block;
+    padding: 0.35rem 0.9rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+  }
+
+  /* Layer box (full-width highlighted box) */
+  .layer-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    width: 100%;
+    padding: 1.5rem 2rem;
+    border-radius: var(--radius);
+    border: 1px solid;
+  }
+
+  .ingest-box {
+    background: rgba(0, 194, 255, 0.06);
+    border-color: rgba(0, 194, 255, 0.25);
+  }
+
+  .ingest-box .layer-icon {
+    color: var(--color-primary);
+    background: rgba(0, 194, 255, 0.12);
+    border-radius: 10px;
+    padding: 0.6rem;
+    flex-shrink: 0;
+  }
+
+  .validate-box {
+    background: rgba(52, 211, 153, 0.06);
+    border-color: rgba(52, 211, 153, 0.25);
+  }
+
+  .validate-box .layer-icon {
+    color: #34d399;
+    background: rgba(52, 211, 153, 0.12);
+    border-radius: 10px;
+    padding: 0.6rem;
+    flex-shrink: 0;
+  }
+
+  .layer-box h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .layer-box p {
+    font-size: 0.9rem;
+    margin: 0;
+  }
+
+  /* Processing grid */
+  .processing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .proc-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .proc-card:hover {
+    border-color: rgba(0, 194, 255, 0.3);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-card);
+  }
+
+  .proc-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .proc-icon.relation { background: rgba(0, 194, 255, 0.12); color: var(--color-primary); }
+  .proc-icon.contradiction { background: rgba(251, 191, 36, 0.12); color: #fbbf24; }
+  .proc-icon.format { background: rgba(0, 255, 200, 0.1); color: var(--color-accent); }
+
+  .proc-card h4 {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .proc-card p {
+    font-size: 0.85rem;
+    margin: 0;
+  }
+
+  .highlight-layer {
+    width: 100%;
+  }
+
+  @media (max-width: 640px) {
+    .processing-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .layer-box {
+      flex-direction: column;
+    }
+  }
+</style>

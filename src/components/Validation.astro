@@ -1,0 +1,258 @@
+---
+---
+<section class="section section-alt" id="validation">
+  <div class="container">
+    <div class="validation-layout">
+      <!-- Left: content -->
+      <div class="validation-content">
+        <span class="tag">Validation Engine</span>
+        <h2>
+          Do your docs match<br />
+          <span class="gradient-text">your software?</span>
+        </h2>
+        <p>
+          The tecweave validation service closes the gap between what your
+          documentation says and what your software actually does. It parses CLI
+          help text and API specification documents, then <strong>actively
+          invokes</strong> the described commands and endpoints against the real
+          running software.
+        </p>
+        <p>
+          Every discrepancy — wrong flags, missing parameters, changed response
+          schemas — is captured in a structured discrepancy report so your
+          teams can act immediately.
+        </p>
+
+        <div class="validation-steps">
+          <div class="step">
+            <div class="step-num">01</div>
+            <div>
+              <h4>Parse Documentation</h4>
+              <p>Reads CLI help output and OpenAPI / API specs from your ingest pipeline.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">02</div>
+            <div>
+              <h4>Execute the Software</h4>
+              <p>Runs the actual CLI commands or sends HTTP requests to the API exactly as documented.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">03</div>
+            <div>
+              <h4>Compare &amp; Report</h4>
+              <p>Diffs actual vs. documented behavior and generates a detailed discrepancy report.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: mock report preview -->
+      <div class="validation-preview" aria-label="Example discrepancy report output">
+        <div class="report-header">
+          <div class="report-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+            </svg>
+            validation-report.json
+          </div>
+          <div class="report-badges">
+            <span class="rbadge pass">3 pass</span>
+            <span class="rbadge fail">2 fail</span>
+          </div>
+        </div>
+        <div class="report-body">
+          <div class="report-item pass">
+            <span class="ri-icon">✓</span>
+            <div>
+              <code>mycli --version</code>
+              <p>Returns expected semver string</p>
+            </div>
+          </div>
+          <div class="report-item fail">
+            <span class="ri-icon">✗</span>
+            <div>
+              <code>mycli export --format json</code>
+              <p>Flag <code>--pretty</code> documented but not recognized</p>
+            </div>
+          </div>
+          <div class="report-item pass">
+            <span class="ri-icon">✓</span>
+            <div>
+              <code>GET /api/v1/items</code>
+              <p>Response schema matches spec</p>
+            </div>
+          </div>
+          <div class="report-item fail">
+            <span class="ri-icon">✗</span>
+            <div>
+              <code>POST /api/v1/items</code>
+              <p>Field <code>metadata.tags</code> absent in response</p>
+            </div>
+          </div>
+          <div class="report-item pass">
+            <span class="ri-icon">✓</span>
+            <div>
+              <code>DELETE /api/v1/items/:id</code>
+              <p>Returns 204 as documented</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .validation-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .validation-content h2 {
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    margin-bottom: 1.25rem;
+  }
+
+  .validation-content p {
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+  }
+
+  .validation-content strong {
+    color: var(--color-text);
+    font-weight: 600;
+  }
+
+  .validation-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+
+  .step {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .step-num {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    background: rgba(0, 194, 255, 0.1);
+    border: 1px solid rgba(0, 194, 255, 0.2);
+    border-radius: 6px;
+    padding: 0.25rem 0.5rem;
+    flex-shrink: 0;
+    font-family: var(--font-mono);
+  }
+
+  .step h4 {
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .step p {
+    font-size: 0.85rem;
+    margin: 0;
+  }
+
+  /* Report preview */
+  .validation-preview {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    font-family: var(--font-mono);
+  }
+
+  .report-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.875rem 1.25rem;
+    background: var(--color-bg-alt);
+    border-bottom: 1px solid var(--color-border);
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+  }
+
+  .report-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .report-badges {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .rbadge {
+    padding: 0.15rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 700;
+  }
+
+  .rbadge.pass { background: rgba(52, 211, 153, 0.12); color: #34d399; }
+  .rbadge.fail { background: rgba(239, 68, 68, 0.12); color: #f87171; }
+
+  .report-body {
+    padding: 0.75rem 0;
+  }
+
+  .report-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.875rem;
+    padding: 0.75rem 1.25rem;
+    border-bottom: 1px solid rgba(30, 58, 95, 0.5);
+    transition: background 0.15s;
+  }
+
+  .report-item:last-child {
+    border-bottom: none;
+  }
+
+  .report-item:hover {
+    background: var(--color-surface-hover);
+  }
+
+  .ri-icon {
+    font-size: 0.9rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .report-item.pass .ri-icon { color: #34d399; }
+  .report-item.fail .ri-icon { color: #f87171; }
+
+  .report-item code {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--color-text);
+    margin-bottom: 0.2rem;
+  }
+
+  .report-item p {
+    font-size: 0.75rem;
+    margin: 0;
+    font-family: var(--font-sans);
+  }
+
+  @media (max-width: 900px) {
+    .validation-layout {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+  }
+</style>
